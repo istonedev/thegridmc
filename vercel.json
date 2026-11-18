@@ -1,6 +1,12 @@
 {
     "version": 2,
     "cleanUrls": true,
+    "rewrites": [
+        {
+            "source": "/development",
+            "destination": "/assets/pages/development.html"
+        }
+    ],
     "trailingSlash": false,
     "headers": [
         {
