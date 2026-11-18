@@ -4,7 +4,7 @@
     "rewrites": [
         {
             "source": "/development",
-            "destination": "/assets/pages/development.html"
+            "destination": "/assets/pages/development"
         }
     ],
     "trailingSlash": false,
