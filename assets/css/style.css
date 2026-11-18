@@ -1,0 +1,310 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --neon-cyan: #00d4ff;
+  --neon-orange: #ff6a00;
+  --neon-red: #ff2a2a;
+  --bg-dark: #05070a;
+  --bg-panel: #0a0f14;
+  --text-main: #e0e0e0;
+  --text-dim: #7a8a99;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Share Tech Mono", monospace;
+  background: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== GRID OVERLAY ===== */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== SCANLINES ===== */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.system-status {
+  color: var(--neon-orange);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 12vw, 7rem);
+  letter-spacing: 0.1em;
+  color: var(--neon-cyan);
+  text-shadow:
+    0 0 10px var(--neon-cyan),
+    0 0 30px rgba(0, 212, 255, 0.6),
+    0 0 60px rgba(0, 212, 255, 0.3);
+  position: relative;
+}
+
+/* glitch effect */
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  color: var(--neon-orange);
+  animation: glitch-1 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  color: var(--neon-red);
+  animation: glitch-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0% { transform: translate(0); }
+  25% { transform: translate(2px, -1px); }
+  50% { transform: translate(-1px, 2px); }
+  75% { transform: translate(1px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.tagline {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.5rem;
+  color: var(--neon-orange);
+  margin-top: 1rem;
+  letter-spacing: 0.3em;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.hero-buttons {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  background: transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  clip-path: polygon(8% 0, 100% 0, 100% 70%, 92% 100%, 0 100%, 0 30%);
+}
+
+.btn-primary {
+  background: var(--neon-cyan);
+  color: var(--bg-dark);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background: var(--neon-orange);
+  border-color: var(--neon-orange);
+  color: var(--bg-dark);
+  box-shadow: 0 0 20px var(--neon-orange);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.section-title {
+  font-family: "Orbitron", sans-serif;
+  color: var(--neon-cyan);
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.2em;
+}
+
+.section-text {
+  color: var(--text-dim);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  max-width: 700px;
+}
+
+/* ===== CARDS ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--bg-panel);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+}
+
+.card:hover {
+  border-color: var(--neon-orange);
+  box-shadow: 0 0 25px rgba(255, 106, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  font-family: "Orbitron", sans-serif;
+  color: var(--neon-orange);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+}
+
+.card p {
+  color: var(--text-dim);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* ===== CONNECT ===== */
+.connect-box {
+  background: var(--bg-panel);
+  border: 1px solid var(--neon-cyan);
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
+}
+
+.connect-label {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  width: 100%;
+  text-align: center;
+}
+
+.server-ip {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.5rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.btn-copy {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.8rem;
+}
+
+.connect-note {
+  text-align: center;
+  color: var(--text-dim);
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.footer-small {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .tagline { font-size: 1.1rem; }
+  .hero-buttons { flex-direction: column; }
+  .btn { width: 100%; text-align: center; }
+  .server-ip { font-size: 1.1rem; }
+}
